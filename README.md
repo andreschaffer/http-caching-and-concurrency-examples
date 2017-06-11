@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/andreschaffer/http-caching-and-concurrency-examples.svg?branch=master)](https://travis-ci.org/andreschaffer/http-caching-and-concurrency-examples)
+[![Coverage Status](https://coveralls.io/repos/github/andreschaffer/http-caching-and-concurrency-examples/badge.svg?branch=master)](https://coveralls.io/github/andreschaffer/http-caching-and-concurrency-examples?branch=master)
+
 # Http Caching and Concurrency Examples
 
 This project aims to provide examples of how to use the Http Caching and Concurrency Controls.  
