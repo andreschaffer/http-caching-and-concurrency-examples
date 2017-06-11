@@ -11,14 +11,14 @@ This is a simple weather service with two resources:
   combined with _Expires_ until the end of the day.
 - Climate (now at Stockholm)  
   The idea with this one is to demonstrate Http Conditional Requests and Concurrency Controls based on the _ETag_ header (_Last-Modified_ can also be used with the same purpose).  
-  - Conditional Requests are used when retrieving a resource.  
+  - Conditional Requests were used when retrieving the resource.  
     Given that the client has knowledge about the resource at a given point in time, it can send its corresponding _ETag_
     along with the request so that the server will either respond with the current resource information in case 
     it has changed since, or with a _Not Modified_ response, saving some bandwith and time.
-  - Concurrency Controls are used when updating a resource. It is a kind of Optimistic Locking on the Http protocol.   
+  - Concurrency Controls were used when updating the resource. It is a kind of Optimistic Locking on the Http protocol.   
     Given that the client has knowledge about the resource at a given point in time, it can send its corresponding _ETag_ 
     along with the request so that the server can update the resource whether that _ETag_ matches its current one 
-    or refuse and let the client know that he's trying to update the resource with basis on outdated knowledge.
+    or refuse to and let the client know that he's trying to update the resource with basis on outdated information.
 
 # Caveat
 When using Http Concurrency Controls for Optimistic Locking, pay attention to your _implementation_
