@@ -18,16 +18,18 @@ public class ClimateResource {
 
     private final ClimateRepository stockholmClimateRepository;
     private final Object transactionLock;
+    private final ETagGenerator eTagGenerator;
 
     public ClimateResource(ClimateRepository climateRepository) {
         this.stockholmClimateRepository = climateRepository;
         this.transactionLock = new Object();
+        this.eTagGenerator = new ETagGenerator();
     }
 
     @GET
     public Response get(@Context Request request) {
         ClimateDto currentClimate = stockholmClimateRepository.get();
-        EntityTag currentETag = calculateETag(currentClimate);
+        EntityTag currentETag = eTagGenerator.eTagFor(currentClimate);
 
         Optional<Response> notModifiedResponse = evaluateETagPrecondition(request, currentETag);
         if (notModifiedResponse.isPresent()) return notModifiedResponse.get();
@@ -39,7 +41,7 @@ public class ClimateResource {
     public Response put(@Context Request request, @NotNull ClimateDto climate) {
         synchronized (transactionLock) {
             ClimateDto currentClimate = stockholmClimateRepository.get();
-            EntityTag currentETag = calculateETag(currentClimate);
+            EntityTag currentETag = eTagGenerator.eTagFor(currentClimate);
 
             Optional<Response> preconditionFailedResponse = evaluateETagPrecondition(request, currentETag);
             if (preconditionFailedResponse.isPresent()) return preconditionFailedResponse.get();
@@ -47,16 +49,12 @@ public class ClimateResource {
             stockholmClimateRepository.save(climate);
         }
 
-        EntityTag eTag = calculateETag(climate);
+        EntityTag eTag = eTagGenerator.eTagFor(climate);
         return Response.noContent().tag(eTag).build();
     }
 
     private Optional<Response> evaluateETagPrecondition(Request request, EntityTag currentETag) {
         ResponseBuilder notModifiedResponseBuilder = request.evaluatePreconditions(currentETag);
         return Optional.ofNullable(notModifiedResponseBuilder).map(ResponseBuilder::build);
-    }
-
-    private EntityTag calculateETag(ClimateDto climate) {
-        return new EntityTag(Integer.toString(climate.hashCode()));
     }
 }
