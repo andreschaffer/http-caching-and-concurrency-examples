@@ -26,7 +26,7 @@ This is a simple weather service with two resources:
 # Caveat
 When using Http Concurrency Controls for Optimistic Locking, pay attention to your _implementation_
 not to fall for _the Lost Update Problem_ the same way:  
-Execute the '_retrieve resource, verify ETag then update resource_' operations in a rather atomic way.
+Make sure to execute the '_retrieve resource, verify ETag then update resource_' operations in a rather atomic way.
 That can be done with either a Transaction or Optimistic Locking at the DB level.
 
 # Trying it out
