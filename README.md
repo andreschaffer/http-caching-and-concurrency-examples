@@ -81,15 +81,15 @@ Note the _ETag_ header in the response.
 ```
 curl -vvv http://localhost:8080/climates/stockholm/now -H 'If-None-Match: "23723"'
 ```
-We will get a 200 response back whether the _If-None-Match_ header value _doesn't_ match the current corresponding ETag on the server,
-or a 304 response on the contrary.
+We will get a 200 OK response back whether the _If-None-Match_ header value _doesn't_ match the current corresponding ETag on the server,
+or a 304 Not Modified response on the contrary.
 
 ### Updating the climate information conditionally
 ```
 curl -vvv -X PUT http://localhost:8080/climates/stockholm/now -H 'If-Match: "23723"' -H 'Content-type: application/json' -d '{"temperature":20,"humidity":90}'
 ```
-We will get a 204 response back whether the _If-Match_ header value _matches_ the current corresponding ETag on the server,
-or a 412 response on the contrary.
+We will get a 204 No Content response back whether the _If-Match_ header value _matches_ the current corresponding ETag on the server,
+or a 412 Precondition Failed response on the contrary.
 
 # Contact
 If you have any questions or suggestions, please ping:  
