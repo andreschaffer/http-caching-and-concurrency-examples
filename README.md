@@ -18,7 +18,7 @@ This is a simple weather service with two resources:
     Given that the client has knowledge about the resource at a given point in time, it can send its corresponding _ETag_
     along with the request so that the server will either respond with the current resource information in case 
     it has changed since, or with a _Not Modified_ response, saving some bandwith and time.
-  - Concurrency Controls were used when updating the resource. It is a kind of Optimistic Locking on the Http protocol.   
+  - Concurrency Controls were used when updating the resource. It is a kind of _Optimistic Locking_ on the Http protocol.   
     Given that the client has knowledge about the resource at a given point in time, it can send its corresponding _ETag_ 
     along with the request so that the server can update the resource whether that _ETag_ matches its current one 
     or refuse to and let the client know that he's trying to update the resource with basis on outdated information.
@@ -26,7 +26,7 @@ This is a simple weather service with two resources:
 # Caveat
 When using Http Concurrency Controls for Optimistic Locking, pay attention to your _implementation_
 not to fall for _the Lost Update Problem_ the same way:  
-Execute the _retrieve resource (verify ETag)_ then _update resource_ operations in a rather atomic way.
+Execute the '_retrieve resource, verify ETag then update resource_' operations in a rather atomic way.
 That can be done with either a Transaction or Optimistic Locking at the DB level.
 
 # Trying it out
