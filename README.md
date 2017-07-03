@@ -91,6 +91,11 @@ curl -vvv -X PUT http://localhost:8080/climates/stockholm/now -H 'If-Match: "237
 We will get a 204 No Content response back whether the _If-Match_ header value _matches_ the current corresponding ETag on the server,
 or a 412 Precondition Failed response on the contrary.
 
-# Contact
-If you have any questions or suggestions, please ping:  
-- André Schaffer (https://github.com/andreschaffer, https://twitter.com/andreschaffer)
+# Contributing
+If you would like to help making this project better, see the [CONTRIBUTING.md](CONTRIBUTING.md).  
+
+# Maintainers
+Send any other comments, flowers and suggestions to [André Schaffer](https://github.com/andreschaffer).
+
+# License
+This project is distributed under the [MIT License](LICENSE).
