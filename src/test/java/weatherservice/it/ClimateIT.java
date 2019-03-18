@@ -1,22 +1,26 @@
 package weatherservice.it;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.junit.Before;
-import org.junit.Test;
-
-import javax.ws.rs.core.Response;
-import java.net.URI;
-
 import static javax.ws.rs.client.Entity.json;
-import static javax.ws.rs.core.HttpHeaders.*;
+import static javax.ws.rs.core.HttpHeaders.ETAG;
+import static javax.ws.rs.core.HttpHeaders.IF_MATCH;
+import static javax.ws.rs.core.HttpHeaders.IF_NONE_MATCH;
 import static javax.ws.rs.core.UriBuilder.fromUri;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.both;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ClimateIT extends BaseIT {
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.net.URI;
+import javax.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-    @Before
-    public void setUp() throws Exception {
+class ClimateIT extends BaseIT {
+
+    @BeforeEach
+    void setUp() {
         climateForceUpdate(10, 80);
     }
 
@@ -35,7 +39,7 @@ public class ClimateIT extends BaseIT {
     }
 
     @Test
-    public void returnClimateWithETag() throws Exception {
+    void returnClimateWithETag() {
         Response response = client.target(climateUrl()).request().get();
         ObjectNode entity = response.readEntity(ObjectNode.class);
         assertThat(entity.get("temperature").asInt(), equalTo(10));
@@ -45,7 +49,7 @@ public class ClimateIT extends BaseIT {
     }
 
     @Test
-    public void returnNotModifiedWhenIfNoneMatchPreconditionIsFalse() throws Exception {
+    void returnNotModifiedWhenIfNoneMatchPreconditionIsFalse() {
         String eTag;
         {
             Response response = client.target(climateUrl()).request().get();
@@ -59,7 +63,7 @@ public class ClimateIT extends BaseIT {
     }
 
     @Test
-    public void returnClimateWhenIfNoneMatchPreconditionIsTrue() throws Exception {
+    void returnClimateWhenIfNoneMatchPreconditionIsTrue() {
         String eTag;
         {
             Response response = client.target(climateUrl()).request().get();
@@ -79,7 +83,7 @@ public class ClimateIT extends BaseIT {
     }
 
     @Test
-    public void updateClimateWhenIfMatchPreconditionIsTrue() throws Exception {
+    void updateClimateWhenIfMatchPreconditionIsTrue() {
         String eTag;
         {
             Response response = client.target(climateUrl()).request().get();
@@ -95,7 +99,7 @@ public class ClimateIT extends BaseIT {
     }
 
     @Test
-    public void returnPreconditionFailedOnClimateUpdateWhenIfMatchPreconditionIsFalse() throws Exception {
+    void returnPreconditionFailedOnClimateUpdateWhenIfMatchPreconditionIsFalse() {
         String eTag;
         {
             Response response = client.target(climateUrl()).request().get();

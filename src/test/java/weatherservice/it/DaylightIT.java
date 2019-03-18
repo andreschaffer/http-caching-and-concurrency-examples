@@ -1,24 +1,25 @@
 package weatherservice.it;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.junit.Test;
+import static javax.ws.rs.core.HttpHeaders.CACHE_CONTROL;
+import static javax.ws.rs.core.HttpHeaders.EXPIRES;
+import static javax.ws.rs.core.UriBuilder.fromUri;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import javax.ws.rs.core.Response;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import javax.ws.rs.core.Response;
+import org.junit.jupiter.api.Test;
 
-import static javax.ws.rs.core.HttpHeaders.CACHE_CONTROL;
-import static javax.ws.rs.core.HttpHeaders.EXPIRES;
-import static javax.ws.rs.core.UriBuilder.fromUri;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
-public class DaylightIT extends BaseIT {
+class DaylightIT extends BaseIT {
 
     @Test
-    public void returnDaylightWithCacheControls() throws Exception {
+    void returnDaylightWithCacheControls() {
         Response response = client.target(daylightUrl()).request().get();
 
         ObjectNode entity = response.readEntity(ObjectNode.class);

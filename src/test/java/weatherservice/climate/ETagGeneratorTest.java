@@ -1,18 +1,18 @@
 package weatherservice.climate;
 
-import org.junit.Test;
-
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ETagGeneratorTest {
+import org.junit.jupiter.api.Test;
+
+class ETagGeneratorTest {
 
     private ETagGenerator eTagGenerator = new ETagGenerator();
 
     @Test
-    public void equalValueObjectsHaveEqualETags() throws Exception {
+    void equalValueObjectsHaveEqualETags() {
         assertThat(eTagGenerator.eTagFor("a"), equalTo(eTagGenerator.eTagFor("a")));
         assertThat(eTagGenerator.eTagFor(1), equalTo(eTagGenerator.eTagFor(1)));
         assertThat(eTagGenerator.eTagFor(true), equalTo(eTagGenerator.eTagFor(true)));
@@ -20,7 +20,7 @@ public class ETagGeneratorTest {
     }
 
     @Test
-    public void differentValueObjectsHaveDifferentETags() throws Exception {
+    void differentValueObjectsHaveDifferentETags() {
         assertThat(eTagGenerator.eTagFor("a"), not(equalTo(eTagGenerator.eTagFor("b"))));
         assertThat(eTagGenerator.eTagFor(1), not(equalTo(eTagGenerator.eTagFor(2))));
         assertThat(eTagGenerator.eTagFor(true), not(equalTo(eTagGenerator.eTagFor(false))));

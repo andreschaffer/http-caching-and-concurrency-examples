@@ -1,16 +1,17 @@
 package weatherservice.climate;
 
-import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ClimateRepositoryTest {
+import org.junit.jupiter.api.Test;
+
+class ClimateRepositoryTest {
 
     private ClimateRepository climateRepository = new ClimateRepository();
 
     @Test
-    public void returnSafeCopy() throws Exception {
+    void returnSafeCopy() {
         ClimateDto climate = climateRepository.get();
         Integer expectedTemperature = climate.getTemperature();
 
