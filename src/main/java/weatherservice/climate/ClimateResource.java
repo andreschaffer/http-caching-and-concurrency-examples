@@ -32,9 +32,7 @@ public class ClimateResource {
         EntityTag currentETag = eTagGenerator.eTagFor(currentClimate);
 
         Optional<Response> notModifiedResponse = evaluateETagPrecondition(request, currentETag);
-        if (notModifiedResponse.isPresent()) return notModifiedResponse.get();
-
-        return Response.ok(currentClimate).tag(currentETag).build();
+        return notModifiedResponse.orElse(Response.ok(currentClimate).tag(currentETag).build());
     }
 
     @PUT
