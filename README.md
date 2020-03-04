@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/andreschaffer/http-caching-and-concurrency-examples.svg?branch=master)](https://travis-ci.org/andreschaffer/http-caching-and-concurrency-examples)
 [![Coverage Status](https://coveralls.io/repos/github/andreschaffer/http-caching-and-concurrency-examples/badge.svg?branch=master)](https://coveralls.io/github/andreschaffer/http-caching-and-concurrency-examples?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/89fa44901c04343aa6a7/maintainability)](https://codeclimate.com/github/andreschaffer/http-caching-and-concurrency-examples/maintainability)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=andreschaffer/http-caching-and-concurrency-examples)](https://dependabot.com)
 
 # Http Caching and Concurrency Examples
 
