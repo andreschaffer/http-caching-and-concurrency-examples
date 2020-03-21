@@ -24,46 +24,9 @@
     </dependency>
 
     <dependency>
-      <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-jersey</artifactId>
-      <version>${dropwizard.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-common</artifactId>
-      <version>2.30.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>jakarta.ws.rs</groupId>
-      <artifactId>jakarta.ws.rs-api</artifactId>
-      <version>2.1.6</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.10.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>jakarta.validation</groupId>
-      <artifactId>jakarta.validation-api</artifactId>
-      <version>2.0.2</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.9</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-testing</artifactId>
-      <version>${dropwizard.version}</version>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -82,18 +45,28 @@
 
     <dependency>
       <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-client</artifactId>
+      <artifactId>dropwizard-testing</artifactId>
       <version>${dropwizard.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-client</artifactId>
-      <version>2.30</version>
+      <groupId>io.dropwizard</groupId>
+      <artifactId>dropwizard-client</artifactId>
+      <version>${dropwizard.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker-qual</artifactId>
+        <version>3.2.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
@@ -150,18 +123,52 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0-M3</version>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <banDuplicatePomDependencyVersions/>
+                <requireUpperBoundDeps/>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.1.2</version>
+        <configuration>
+          <failOnWarning>true</failOnWarning>
+          <outputXML>true</outputXML>
+          <ignoredUsedUndeclaredDependencies>
+            <!-- part of dropwizard core -->
+            <ignoredUsedUndeclaredDependency>io.dropwizard:*</ignoredUsedUndeclaredDependency>
+            <ignoredUsedUndeclaredDependency>
+              com.fasterxml.jackson.core:*
+            </ignoredUsedUndeclaredDependency>
+            <ignoredUsedUndeclaredDependency>jakarta.validation::*</ignoredUsedUndeclaredDependency>
+            <ignoredUsedUndeclaredDependency>jakarta.ws.rs:*</ignoredUsedUndeclaredDependency>
+            <ignoredUsedUndeclaredDependency>
+              org.glassfish.jersey.core:*
+            </ignoredUsedUndeclaredDependency>
+          </ignoredUsedUndeclaredDependencies>
+        </configuration>
         <executions>
           <execution>
             <id>analyze</id>
+            <phase>test-compile</phase>
             <goals>
               <goal>analyze-only</goal>
             </goals>
-            <configuration>
-              <failOnWarning>true</failOnWarning>
-              <outputXML>true</outputXML>
-            </configuration>
           </execution>
         </executions>
       </plugin>
