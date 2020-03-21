@@ -9,21 +9,23 @@ import org.junit.jupiter.api.Test;
 
 class ETagGeneratorTest {
 
-    private ETagGenerator eTagGenerator = new ETagGenerator();
+  private ETagGenerator etagGenerator = new ETagGenerator();
 
-    @Test
-    void equalValueObjectsHaveEqualETags() {
-        assertThat(eTagGenerator.eTagFor("a"), equalTo(eTagGenerator.eTagFor("a")));
-        assertThat(eTagGenerator.eTagFor(1), equalTo(eTagGenerator.eTagFor(1)));
-        assertThat(eTagGenerator.eTagFor(true), equalTo(eTagGenerator.eTagFor(true)));
-        assertThat(eTagGenerator.eTagFor(singletonList(1)), equalTo(eTagGenerator.eTagFor(singletonList(1))));
-    }
+  @Test
+  void equalValueObjectsHaveEqualETags() {
+    assertThat(etagGenerator.etagFor("a"), equalTo(etagGenerator.etagFor("a")));
+    assertThat(etagGenerator.etagFor(1), equalTo(etagGenerator.etagFor(1)));
+    assertThat(etagGenerator.etagFor(true), equalTo(etagGenerator.etagFor(true)));
+    assertThat(etagGenerator.etagFor(singletonList(1)),
+        equalTo(etagGenerator.etagFor(singletonList(1))));
+  }
 
-    @Test
-    void differentValueObjectsHaveDifferentETags() {
-        assertThat(eTagGenerator.eTagFor("a"), not(equalTo(eTagGenerator.eTagFor("b"))));
-        assertThat(eTagGenerator.eTagFor(1), not(equalTo(eTagGenerator.eTagFor(2))));
-        assertThat(eTagGenerator.eTagFor(true), not(equalTo(eTagGenerator.eTagFor(false))));
-        assertThat(eTagGenerator.eTagFor(singletonList(1)), not(equalTo(eTagGenerator.eTagFor(singletonList(3)))));
-    }
+  @Test
+  void differentValueObjectsHaveDifferentETags() {
+    assertThat(etagGenerator.etagFor("a"), not(equalTo(etagGenerator.etagFor("b"))));
+    assertThat(etagGenerator.etagFor(1), not(equalTo(etagGenerator.etagFor(2))));
+    assertThat(etagGenerator.etagFor(true), not(equalTo(etagGenerator.etagFor(false))));
+    assertThat(etagGenerator.etagFor(singletonList(1)),
+        not(equalTo(etagGenerator.etagFor(singletonList(3)))));
+  }
 }

@@ -22,19 +22,19 @@ import weatherservice.bootstrap.WeatherServiceApplication;
 @ExtendWith(DropwizardExtensionsSupport.class)
 abstract class BaseIT {
 
-    protected static final DropwizardAppExtension<Configuration> SERVICE =
-            new DropwizardAppExtension<>(
-                WeatherServiceApplication.class,
-                resourceFilePath("integration.yml"));
+  protected static final DropwizardAppExtension<Configuration> SERVICE =
+      new DropwizardAppExtension<>(
+          WeatherServiceApplication.class,
+          resourceFilePath("integration.yml"));
 
-    protected static Client client;
+  protected static Client client;
 
-    @BeforeAll
-    static void setUpClass() {
-        client = new JerseyClientBuilder(SERVICE.getEnvironment())
-                .build(MethodHandles.lookup().lookupClass().getName())
-                .property(CONNECT_TIMEOUT, 2000)
-                .property(READ_TIMEOUT, 3000)
-                .register(new LoggingFeature(getLogger(DEFAULT_LOGGER_NAME), INFO, PAYLOAD_ANY, 1024));
-    }
+  @BeforeAll
+  static void setUpClass() {
+    client = new JerseyClientBuilder(SERVICE.getEnvironment())
+        .build(MethodHandles.lookup().lookupClass().getName())
+        .property(CONNECT_TIMEOUT, 2000)
+        .property(READ_TIMEOUT, 3000)
+        .register(new LoggingFeature(getLogger(DEFAULT_LOGGER_NAME), INFO, PAYLOAD_ANY, 1024));
+  }
 }

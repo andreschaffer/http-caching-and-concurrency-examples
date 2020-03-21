@@ -18,26 +18,27 @@ import org.junit.jupiter.api.Test;
 
 class DaylightIT extends BaseIT {
 
-    @Test
-    void returnDaylightWithCacheControls() {
-        Response response = client.target(daylightUrl()).request().get();
+  @Test
+  void returnDaylightWithCacheControls() {
+    Response response = client.target(daylightUrl()).request().get();
 
-        ObjectNode entity = response.readEntity(ObjectNode.class);
-        assertThat(entity.get("sunrise").asText(), equalTo("06:00+02:00"));
-        assertThat(entity.get("sunset").asText(), equalTo("18:00+02:00"));
-        assertThat(response.getStatus(), equalTo(200));
-        assertThat(response.getHeaderString(CACHE_CONTROL),
-                allOf(containsString("no-transform"), containsString("max-age=86400")));
-        assertThat(response.getHeaderString(EXPIRES), equalTo(today() + " 23:59:59 GMT"));
-    }
+    ObjectNode entity = response.readEntity(ObjectNode.class);
+    assertThat(entity.get("sunrise").asText(), equalTo("06:00+02:00"));
+    assertThat(entity.get("sunset").asText(), equalTo("18:00+02:00"));
+    assertThat(response.getStatus(), equalTo(200));
+    assertThat(response.getHeaderString(CACHE_CONTROL),
+        allOf(containsString("no-transform"), containsString("max-age=86400")));
+    assertThat(response.getHeaderString(EXPIRES), equalTo(today() + " 23:59:59 GMT"));
+  }
 
-    private String today() {
-        ZoneOffset stockholmOffset = ZoneOffset.of("+02:00");
-        DateTimeFormatter httpDateFormat = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
-        return LocalDate.now(stockholmOffset).format(httpDateFormat);
-    }
+  private String today() {
+    ZoneOffset stockholmOffset = ZoneOffset.of("+02:00");
+    DateTimeFormatter httpDateFormat = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
+    return LocalDate.now(stockholmOffset).format(httpDateFormat);
+  }
 
-    private URI daylightUrl() {
-        return fromUri("http://localhost").port(SERVICE.getLocalPort()).path("daylights/stockholm/today").build();
-    }
+  private URI daylightUrl() {
+    return fromUri("http://localhost").port(SERVICE.getLocalPort())
+        .path("daylights/stockholm/today").build();
+  }
 }

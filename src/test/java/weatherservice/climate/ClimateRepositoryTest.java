@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 
 class ClimateRepositoryTest {
 
-    private ClimateRepository climateRepository = new ClimateRepository();
+  private ClimateRepository climateRepository = new ClimateRepository();
 
-    @Test
-    void returnSafeCopy() {
-        ClimateDto climate = climateRepository.get();
-        Integer expectedTemperature = climate.getTemperature();
+  @Test
+  void returnSafeCopy() {
+    ClimateDto climate = climateRepository.get();
+    Integer expectedTemperature = climate.getTemperature();
 
-        climate.setTemperature(30);
+    climate.setTemperature(30);
 
-        Integer actualTemperature = climateRepository.get().getTemperature();
-        assertThat(actualTemperature, equalTo(expectedTemperature));
-    }
+    Integer actualTemperature = climateRepository.get().getTemperature();
+    assertThat(actualTemperature, equalTo(expectedTemperature));
+  }
 }
