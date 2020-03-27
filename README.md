@@ -1,5 +1,5 @@
 ![Build](https://github.com/andreschaffer/http-caching-and-concurrency-examples/workflows/Build/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/andreschaffer/http-caching-and-concurrency-examples/badge.svg?branch=master)](https://coveralls.io/github/andreschaffer/http-caching-and-concurrency-examples?branch=master)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89fa44901c04343aa6a7/test_coverage)](https://codeclimate.com/github/andreschaffer/http-caching-and-concurrency-examples/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/89fa44901c04343aa6a7/maintainability)](https://codeclimate.com/github/andreschaffer/http-caching-and-concurrency-examples/maintainability)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=andreschaffer/http-caching-and-concurrency-examples)](https://dependabot.com)
 
