@@ -33,7 +33,7 @@ That can be done with either a Transaction or Optimistic Locking at the DB level
 
 # Trying it out
 ## Requirements
-- Java 12
+- Java 14
 - Maven
 
 ## Building the application
