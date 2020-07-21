@@ -1,7 +1,7 @@
 ![Build](https://github.com/andreschaffer/http-caching-and-concurrency-examples/workflows/Build/badge.svg)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89fa44901c04343aa6a7/test_coverage)](https://codeclimate.com/github/andreschaffer/http-caching-and-concurrency-examples/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/89fa44901c04343aa6a7/maintainability)](https://codeclimate.com/github/andreschaffer/http-caching-and-concurrency-examples/maintainability)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=andreschaffer/http-caching-and-concurrency-examples)](https://dependabot.com)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically)
 
 # Http Caching and Concurrency Examples
 
