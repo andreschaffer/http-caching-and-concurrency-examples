@@ -33,6 +33,7 @@ public class DaylightResource {
     return Response.ok(daylight).expires(endOfTheDayUtcTime()).build();
   }
 
+  @SuppressWarnings("JdkObsolete")
   private Date endOfTheDayUtcTime() {
     LocalDate today = LocalDate.now(STOCKHOLM_OFFSET);
     LocalTime endOfTheDayTime = LocalTime.MAX;
