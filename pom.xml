@@ -15,6 +15,7 @@
     <mvn-test-plugins.version>3.0.0-M5</mvn-test-plugins.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <argLine></argLine>
   </properties>
 
   <dependencies>
@@ -232,6 +233,7 @@
         <version>${mvn-test-plugins.version}</version>
         <configuration>
           <argLine>
+            @{argLine}
             --add-opens java.base/java.lang=ALL-UNNAMED
             --add-opens java.base/java.util=ALL-UNNAMED
           </argLine>
