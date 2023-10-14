@@ -2,9 +2,9 @@ package weatherservice.bootstrap;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 
-import io.dropwizard.Application;
-import io.dropwizard.Configuration;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.Application;
+import io.dropwizard.core.Configuration;
+import io.dropwizard.core.setup.Environment;
 import weatherservice.climate.ClimateRepository;
 import weatherservice.climate.ClimateResource;
 import weatherservice.daylight.DaylightResource;

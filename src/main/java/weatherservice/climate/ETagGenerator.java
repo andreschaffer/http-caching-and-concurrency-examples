@@ -1,6 +1,6 @@
 package weatherservice.climate;
 
-import javax.ws.rs.core.EntityTag;
+import jakarta.ws.rs.core.EntityTag;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class ETagGenerator {
